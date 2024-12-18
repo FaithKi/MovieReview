@@ -3,10 +3,10 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/',(req,res) => {
-    res.json({mssg:'Get all movies!!!'})
+    res.json({mssg:'Get all movies'})
 })
 router.get('/:id',(req,res) => {
-    res.json({mssg:'Get one movie!!!'})
+    res.json({mssg:'Get one movie'})
 })
 router.post('/:id',(req,res) => {
     res.json({mssg:'Post one movie'})
