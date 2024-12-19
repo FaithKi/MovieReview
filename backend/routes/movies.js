@@ -1,6 +1,5 @@
-const express = require('express')
-const Movie = require('../models/movieModel')
-const {createMovie, getAllMovies,getOneMovie, updateMovie, deleteMovie} = require('../controllers/movieController')
+import express from 'express'
+import {createMovie, getAllMovies,getOneMovie, updateMovie, deleteMovie} from '../controllers/movieController.js'
 
 const router = express.Router()
 
@@ -13,4 +12,4 @@ router.post('/', createMovie)
 router.delete('/:id', deleteMovie)
 router.patch('/:id', updateMovie)
 
-module.exports = router
+export default router

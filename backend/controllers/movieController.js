@@ -1,5 +1,7 @@
-const Movie = require('../models/movieModel')
-const mongoose = require('mongoose')
+// const Movie = require('../models/movieModel')
+// const mongoose = require('mongoose')
+import Movie from '../models/movieModel.js'
+import mongoose from 'mongoose';
 
 const createMovie = async (req,res) => {
     const {title, year, description, ratings} = req.body
@@ -61,4 +63,4 @@ const getOneMovie = async (req,res) => {
     res.status(200).json(movie)
 }
 
-module.exports = {createMovie, getAllMovies, getOneMovie, updateMovie, deleteMovie}
+export {createMovie, getAllMovies, getOneMovie, updateMovie, deleteMovie}
