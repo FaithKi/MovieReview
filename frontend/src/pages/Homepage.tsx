@@ -1,8 +1,20 @@
+import { useState, useEffect } from "react";
+import MovieList from "../components/MovieList";
+
 export default function Homepage() {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const response = await fetch("/api/movies");
+      const mov = await response.json();
+      setMovies(mov);
+    };
+    fetchMovies();
+  }, []);
   return (
     <>
       <div>
-        <h1>Welcome to homepage!</h1>
+        <MovieList movies={movies} />
       </div>
     </>
   );

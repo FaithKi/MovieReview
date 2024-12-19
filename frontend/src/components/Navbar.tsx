@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
   return (
-    <>
-      <h2 style={{ background: "red" }}>Navbar eiei</h2>
-    </>
+    <div className="navbar">
+      <Link to="/">
+        <div className="text-4xl font-bold">MovieReviewZZZ</div>
+      </Link>
+    </div>
   );
 }
