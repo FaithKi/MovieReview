@@ -6,6 +6,9 @@ export default function Navbar() {
       <Link to="/">
         <div className="text-4xl font-bold">MovieReviewZZZ</div>
       </Link>
+      <Link to="/profile">
+        <img src="" alt="user profile" />
+      </Link>
     </div>
   );
 }

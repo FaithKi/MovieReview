@@ -21,12 +21,48 @@
   @apply px-2 py-2 bg-red-200
 }
 
+.movie-list-header {
+  font-size: 20px;
+}
+.movie-poster{
+  width: 160px;
+  height: 200px;
+  background-color: black;
+  border-radius: 10px;
+  align-self: center;
+}
+
+.movie-list-contents{
+  display: flex;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 15px;
+  height: 300px;
+}
+.movie-list-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+}
 .movie-item-wrapper {
-  @apply hover:text-red-700 bg-slate-200 my-2
+  
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  /* @apply hover:text-red-700 bg-slate-200 my-2 */
+}
+
+.watchlist-button{
+  background-color: white;
+  justify-content: space-between;
 }
 
 .navbar {
-  @apply py-3 px-3
+  /* @apply py-3 px-3 */
+  display: flex;
+  justify-content: space-between;
 }
 
 /* a {
