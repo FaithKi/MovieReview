@@ -1,8 +1,3 @@
-// require('dotenv').config()
-
-// const express = require('express')
-// const mongoose = require('mongoose')
-// const movieRoutes = require('./routes/movies')
 import 'dotenv/config';  // Import dotenv and immediately run it
 import express from 'express';
 import mongoose from 'mongoose';

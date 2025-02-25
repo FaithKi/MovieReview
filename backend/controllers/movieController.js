@@ -1,5 +1,3 @@
-// const Movie = require('../models/movieModel')
-// const mongoose = require('mongoose')
 import Movie from '../models/movieModel.js'
 import mongoose from 'mongoose';
 
