@@ -8,9 +8,12 @@ export default function Homepage() {
       const response = await fetch("/api/movies");
       const mov = await response.json();
       setMovies(mov);
+      
     };
     fetchMovies();
   }, []);
+
+  console.log(movies.length)
   return (
     <>
       <div>

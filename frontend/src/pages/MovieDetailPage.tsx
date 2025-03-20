@@ -14,5 +14,9 @@ export default function MovieDetailPage() {
     };
     fetchMovie();
   }, []);
-  return <h1>movie detail page of...{movie.title}</h1>;
+
+  console.log(movie)
+  return <>
+    <h1>{movie.title}</h1>;
+  </>
 }

@@ -1,15 +1,9 @@
 import express from 'express'
-import {createMovie, getAllMovies,getOneMovie, updateMovie, deleteMovie} from '../controllers/movieController.js'
+import {getMovies, getMovie} from '../controllers/movieController.js'
 
 const router = express.Router()
 
-router.get('/', getAllMovies)
-
-router.get('/:id',getOneMovie)
-
-router.post('/', createMovie)
-
-router.delete('/:id', deleteMovie)
-router.patch('/:id', updateMovie)
+router.get('/', getMovies)
+router.get('/:id', getMovie)
 
 export default router

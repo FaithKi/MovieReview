@@ -1,64 +1,24 @@
 import Movie from '../models/movieModel.js'
 import mongoose from 'mongoose';
 
-const createMovie = async (req,res) => {
-    const {title, year, description, ratings} = req.body
+const getMovies = async (req, res) => {
+    try{
+        const movies = await Movie.find().select("_id title tagline popularity runtime poster_path");
+        res.status(200).json(movies)
+    } catch(error) {
+        res.status(500).json({message: error.message})
+    }
+}
 
-    // add doc to db
+const getMovie = async(req, res) => {
+    const {id} = req.params;
     try {
-        const movie = await Movie.create({title,year,description,ratings})
-        res.status(200).json(movie)
-    } catch (error) {
-        res.status(400).json({error:error.message})
+        const  movie = await Movie.findById(id)
+        if (!movie) return res.status(404).json({message: 'Movie not found'})
+        res.status(200).json(movie)    
+    } catch(error) {
+        res.status(500).json({message: error.message})
     }
-}
+};
 
-const updateMovie = async (req,res) => {
-    const {id} = req.params
-    const update = req.body
-
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error:'Not a valid ID'})
-    }
-
-    const movie = await Movie.findByIdAndUpdate(id, update)
-    if(!movie) {
-        res.status(404).json({error:'No such movie'})
-    }
-    res.status(200).json(movie)
-}
-
-const deleteMovie = async (req,res) => {
-    const {id} = req.params
-
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error:'Not a valid ID'})
-    }
-
-    const movie = await Movie.findByIdAndDelete(id)
-    if(!movie) {
-        res.status(404).json({error:'No such movie'})
-    }
-    res.status(200).json(movie)
-}
-
-const getAllMovies = async (req,res) => {
-    const movies = await Movie.find({}).sort({createdAt:-1})
-    res.status(200).json(movies)
-}
-
-const getOneMovie = async (req,res) => {
-    const {id} = req.params
-
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error:'Not a valid ID'})
-    }
-    const movie = await Movie.findById(id)
-
-    if(!movie) {
-        res.status(404).json({error:'No such movie'})
-    }
-    res.status(200).json(movie)
-}
-
-export {createMovie, getAllMovies, getOneMovie, updateMovie, deleteMovie}
+export {getMovies, getMovie}

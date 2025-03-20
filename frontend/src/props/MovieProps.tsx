@@ -1,17 +1,19 @@
 interface MovieProps {
   _id: any;
-  title: String;
-  year: Number;
-  description: String;
-  ratings: Number;
+  title: string;
+  poster_path: string
+  runtime: Number;
+  tagline: string;
+  popularity: Number;
 }
 
 export const defaultMovie: MovieProps = {
   _id: 0,
-  title: "Unknown",
-  year: 0,
-  description: "Unknown",
-  ratings: 0,
+  title: "",
+  poster_path: "",
+  runtime: 0,
+  tagline: "",
+  popularity: 0
 };
 
 export default MovieProps;

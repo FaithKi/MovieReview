@@ -11,12 +11,14 @@ export default function MovieList({ movies }: MovieListProps) {
       <div className="movie-list-header">Zuper movies</div>
       <div className="movie-list-contents">
         {movies.map((movie: MovieProps) => (
-          <div className="movie-list-content">
-            <div className="movie-item-wrapper" key={movie._id}>
+          <div className="movie-list-content"  key={movie._id}>
+            <div className="movie-item-wrapper">
               <Link to={`/movie/${movie._id}`}>
-                <div className="movie-poster"></div>
+                <div className="movie-poster">
+                  <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                </div>
               </Link>
-              <div className="movie-title">{movie.title}</div>
+              {/* <div className="movie-title">{movie.title}</div> */}
             </div>
             <button className="watchlist-button">Watchlist</button>
           </div>
