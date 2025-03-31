@@ -1,5 +1,6 @@
 import 'dotenv/config';  // Import dotenv and immediately run it
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import movieRoutes from './routes/movieRouter.js';  // Ensure this path is correct
 // import loadMovies from './importMovie.js'
@@ -12,6 +13,7 @@ app.use((req,res,next) => {
     console.log(req.path,req.method)
     next()
 })
+app.use(cors());
 app.use(express.json());
 
 

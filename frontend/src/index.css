@@ -18,6 +18,15 @@
   }
 }
 
+@theme {
+  --color-primary-600: #2A004E;
+  --color-primary-500: #500073;
+  --color-primary-400: #7300A6;
+  --color-secondary-600: #C62300;
+  --color-secondary-400: #F14A00;
+  --color-snow: #FFF7F7;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -32,6 +41,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 } */
+
+body {
+  @apply h-screen bg-primary-600
+}
 
 .movie-list {
   @apply px-2 py-2 bg-red-200
@@ -72,12 +85,6 @@
 
 .watchlist-button{
   background-color: white;
-  justify-content: space-between;
-}
-
-.navbar {
-  /* @apply py-3 px-3 */
-  display: flex;
   justify-content: space-between;
 }
 
