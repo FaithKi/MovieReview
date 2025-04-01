@@ -1,0 +1,1 @@
+export const pageWidth:number = 324

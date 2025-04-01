@@ -1,5 +1,7 @@
 export default function Footer(){
     return <>
-        <div className="h-[4vh] bg-primary-500 mt-30"></div>
+        <div className="h-[4vh] text-white bg-black mt-30 flex justify-center items-center">
+        © by Faith and Klongzzz
+        </div>
     </>
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import {MovieProps} from "../props/MovieProps";
 import { useRef, useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-
+import { pageWidth } from "../constant";
 interface MovieListProps {
   header: String
   movies: Array<MovieProps>;
@@ -13,13 +13,13 @@ export default function MovieList({ header, movies }: MovieListProps) {
 
   const scroll = (direction: number) => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: direction * 1296, behavior: "smooth" });
+      containerRef.current.scrollBy({ left: direction * pageWidth * 4, behavior: "smooth" });
     }
   };
 
 
   return (
-    <div className="px-2 py-2 w-324">
+    <div className={`px-2 py-2 w-${pageWidth}`}>
       <div className="text-2xl text-secondary-600 mb2">{header}</div>
       <div className="relative group">
         {/* Left Scroll Button */}
@@ -36,6 +36,7 @@ export default function MovieList({ header, movies }: MovieListProps) {
                     <img
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       alt={movie.title}
+                      className="w-50"
                     />
                 </Link>
                 {/* <div className="movie-title">{movie.title}</div> */}

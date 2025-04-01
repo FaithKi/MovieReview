@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {MovieDetail, defaultMovieDetail } from "../props/MovieProps";
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function MovieDetailPage() {
   const { id } = useParams();
   const [movie, setMovie] = useState<MovieDetail>(defaultMovieDetail);
-
+  const [isLoading, setLoading] = useState(true)
   useEffect(() => {
     const fetchMovie = async () => {
-      const response = await fetch(`http://localhost:4000/api/movies/${id}`);
-      const mov = await response.json();
-      console.log("movie:", mov);
-      setMovie(mov);
+      try {
+        const response = await fetch(`http://localhost:4000/api/movies/${id}`);
+        const mov = await response.json();
+        console.log("movie:", mov);
+        setMovie(mov);
+        setLoading(false);
+      } catch (error) {
+        console.log(error)
+      }
     };
     fetchMovie();
   }, []);
 
   return (
     <>
+    {isLoading ? <LoadingScreen />:
       <div className="movie-detail bg-snow border-x-secondary-400 border-x-10 w-full md:w-[80vw] h-lvh absolute md:left-[10%] pt-10 px-5 shadow-xl">
         {movie != defaultMovieDetail ? (
           <>
@@ -61,7 +68,7 @@ export default function MovieDetailPage() {
         ) : (
           <h1 className="text-4xl font-bold text-primary-600">Loading...</h1>
         )}
-      </div>
+      </div>}
     </>
   );
 }
