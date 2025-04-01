@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { pageWidth } from "../constant";
 export default function Navbar() {
   return (
-    <div className="h-[10vh] bg-linear-to-br from-primary-600 via-primary-500 via-65% to-primary-400 py-3.5 px-8 flex justify-center items-center shadow-xl">
-      <div className={`w-${pageWidth} flex justify-between items-center`}>
+    <div className="h-[10vh] bg-linear-to-br from-primary-600 via-primary-500 via-65% to-primary-400 py-3.5 px-8  flex justify-center items-center shadow-xl">
+      <div className={`w-[${pageWidth}vw] flex justify-between items-center`}>
         <Link to="/">
           <div className="h-12  text-4xl font-bold text-transparent bg-clip-text bg-linear-to-b from-secondary-600 from-50% to-secondary-400 to-80%">
             Filmageddon

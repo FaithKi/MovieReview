@@ -43,16 +43,8 @@
 } */
 
 body {
-  @apply h-screen bg-primary-600
+  @apply h-screen bg-primary-600 max-w-full
 }
 
-
-.movie-list-contents{
-  display: flex;
-  position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
-  gap: 15px;
-}
 
 
