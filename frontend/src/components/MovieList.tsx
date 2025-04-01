@@ -10,7 +10,6 @@ interface MovieListProps {
 
 export default function MovieList({ header, movies }: MovieListProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const width = pageWidth
   const scroll = (direction: number) => {
     if (containerRef.current) {
       containerRef.current.scrollBy({ left: direction * pageWidth * 4, behavior: "smooth" });
@@ -19,7 +18,7 @@ export default function MovieList({ header, movies }: MovieListProps) {
 
 
   return (
-    <div className={`w-[${width}vw] px-2 py-2`}>
+    <div className={`w-[65vw] px-2 py-2`}>
       <div className="text-2xl text-secondary-600 mb2">{header}</div>
       <div className="relative group">
         {/* Left Scroll Button */}

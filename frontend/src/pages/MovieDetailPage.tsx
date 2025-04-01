@@ -25,7 +25,7 @@ export default function MovieDetailPage() {
   return (
     <>
     {isLoading ? <LoadingScreen />:
-      <div className="movie-detail bg-snow border-x-secondary-400 border-x-10 w-full md:w-[80vw] h-lvh absolute md:left-[10%] pt-10 px-5 shadow-xl">
+      <div className="movie-detail bg-snow border-x-secondary-400 border-x-10 w-full md:w-[65vw] h-lvh relative  md:left-[17.5%] pt-10 px-5 shadow-xl">
         {movie != defaultMovieDetail ? (
           <>
             <div className="basic-details flex pt-5 h-[60vh] w-full items-center md:items-stretch flex-col md:flex-row">
