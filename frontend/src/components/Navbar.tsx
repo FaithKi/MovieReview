@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div className="navbar h-[10vh] bg-linear-to-br from-primary-600 via-primary-500 via-65% to-primary-400 py-3.5 px-8 flex justify-between items-center shadow-xl">
+    <div className="h-[10vh] bg-linear-to-br from-primary-600 via-primary-500 via-65% to-primary-400 py-3.5 px-8 flex justify-between items-center shadow-xl">
       <Link to="/">
-        <div className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-b from-secondary-600 from-50% to-secondary-400 to-80%">
+        <div className="h-12  text-4xl font-bold text-transparent bg-clip-text bg-linear-to-b from-secondary-600 from-50% to-secondary-400 to-80%">
           Filmageddon
         </div>
       </Link>

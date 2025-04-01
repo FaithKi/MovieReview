@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import MovieProps, { defaultMovie } from "../props/MovieProps";
+import {MovieDetail, defaultMovieDetail } from "../props/MovieProps";
 
 export default function MovieDetailPage() {
   const { id } = useParams();
-  const [movie, setMovie] = useState<MovieProps>(defaultMovie);
+  const [movie, setMovie] = useState<MovieDetail>(defaultMovieDetail);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -19,7 +19,7 @@ export default function MovieDetailPage() {
   return (
     <>
       <div className="movie-detail bg-snow border-x-secondary-400 border-x-10 w-full md:w-[80vw] h-lvh absolute md:left-[10%] pt-10 px-5 shadow-xl">
-        {movie != defaultMovie ? (
+        {movie != defaultMovieDetail ? (
           <>
             <div className="basic-details flex pt-5 h-[60vh] w-full items-center md:items-stretch flex-col md:flex-row">
               <div
@@ -43,14 +43,7 @@ export default function MovieDetailPage() {
                 <p className="italic">{`"${movie.tagline}"`}</p>
                 <br />
                 <p className="indent-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum...
+                  {movie.overview}
                 </p>
                 <br />
                 <p>
