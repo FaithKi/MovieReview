@@ -50,7 +50,9 @@ const MovieSchema = new mongoose.Schema({
     video: Boolean,
     vote_average: Number,
     vote_count: Number
-  });
+  },
+  { timestamps: true }
+);
   
 const Movie = mongoose.model('Movie', MovieSchema);
 

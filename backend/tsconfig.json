@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "NodeNext",
+      "moduleResolution": "nodenext",
+      "allowImportingTsExtensions": true,
+      "strict": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "esModuleInterop": true,
+      "noEmit": true,
+      "allowJs": true,
+      "noImplicitAny": false // Optional, but helps suppress implicit 'any' errors
+    }
+
+}
+  

@@ -2,12 +2,12 @@ import 'dotenv/config';  // Import dotenv and immediately run it
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import movieRoutes from './routes/movieRouter.js';  // Ensure this path is correct
-// import loadMovies from './importMovie.js'
+import movieRoutes from './routes/movieRouter.ts';  // Ensure this path is correct
+
 // express app
 const app = express()
+const mongo_uri= process.env.MONGO_URI as string;
 
-// app.use('/importMovies', loadMovies)
 // middleware
 app.use((req,res,next) => {
     console.log(req.path,req.method)
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use('/api/movies',movieRoutes)
 
 // connect to db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(mongo_uri)
     .then(()=>{
         // listen for request
         app.listen(process.env.PORT, () => {

@@ -1,10 +1,10 @@
-import Movie from './models/movieModel.js'
+import Movie from './src/models/movieModel.ts'
 import dotenv from 'dotenv';
 dotenv.config();
 
 const { TMDB_TOKEN} = process.env;
 const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=';
-const pages = 5
+const pages = 10
 // const url = 'https://api.themoviedb.org/3/movie/movie_id?language=en-US';
 const options = {
   method: 'GET',
