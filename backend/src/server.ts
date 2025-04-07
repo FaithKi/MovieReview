@@ -4,6 +4,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import movieRoutes from './routes/movieRoutes.ts';  // Ensure this path is correct
 import authRoutes from './routes/authRoutes.ts';  // Ensure this path is correct
+import userRoutes from './routes/userRoutes.ts';  // Ensure this path is correct
+import { appendFile } from 'fs';
 
 // express app
 const app = express()
@@ -20,7 +22,8 @@ app.use(express.json());
 
 // routes
 app.use('/api/movies',movieRoutes)
-app.use('/api/auth', authRoutes) // Ensure you have authRoutes imported
+app.use('/api/auth', authRoutes) 
+app.use('/api/user', userRoutes)
 // connect to db
 mongoose.connect(mongo_uri)
     .then(()=>{

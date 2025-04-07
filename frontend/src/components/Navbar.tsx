@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 export default function Navbar() {
-  const {userState, logout} = useAuth();
-  
+  const {userState} = useAuth();
+  const navigate = useNavigate();
   return (
     <nav className="h-[10vh] bg-linear-to-br from-primary-600 via-primary-500 via-65% to-primary-400 py-3.5 px-8  flex justify-center items-center shadow-xl">
       <div className={`w-[65vw] flex justify-between items-center`}>
@@ -19,7 +19,7 @@ export default function Navbar() {
         
         {userState.isAuthenticated? <Link to="/profile">
           <div className="profile-img flex h-12 w-12 rounded-xl transition duration-300 ease-in-out hover:scale-110 bg-smoke overflow-hidden">
-            <img onClick={logout}
+            <img onClick={() => navigate("/profile")}
               src="https://people.com/thmb/4w9l4F40TrN3Ix2d-PH2XODqra0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/sylvester-stallone-rocky-III-diet-062123-1-9a3af3b939fb417fb2032dfc03fa83cf.jpg"
               alt="user profile"
             />

@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState, useContext, ReactNode } from "react";
 import { AuthContextType, UserState } from "../type";
 
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -17,10 +18,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [userState]);
 
-  const login = (userData: UserState) => setUserState(userData);
+  const login = (userData: UserState) => {
+    setUserState(userData);
+
+  }
   const logout = () => {
     setUserState({ isAuthenticated: false, user: null, token: null });
     localStorage.removeItem("userState");
+
   };
 
   return (
