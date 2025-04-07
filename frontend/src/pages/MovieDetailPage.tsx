@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MovieDetail, defaultMovieDetail } from "../props/MovieProps";
 import LoadingScreen from "../components/LoadingScreen";
+import axios from "axios";
 
 export default function MovieDetailPage() {
   const { id } = useParams();
@@ -10,8 +11,8 @@ export default function MovieDetailPage() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/movies/${id}`);
-        const mov = await response.json();
+        const response = await axios.get(`http://localhost:4000/api/movies/${id}`);
+        const mov = await response.data;
         console.log("movie:", mov);
         setMovie(mov);
         setLoading(false);

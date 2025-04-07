@@ -1,5 +1,4 @@
 import Movie from '../models/movieModel.ts';
-import mongoose from 'mongoose';
 import { Request, Response} from "express";
 
 const getMovies = async (req: Request, res: Response) => {

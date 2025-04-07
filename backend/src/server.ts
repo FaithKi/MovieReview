@@ -2,7 +2,8 @@ import 'dotenv/config';  // Import dotenv and immediately run it
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import movieRoutes from './routes/movieRouter.ts';  // Ensure this path is correct
+import movieRoutes from './routes/movieRoutes.ts';  // Ensure this path is correct
+import authRoutes from './routes/authRoutes.ts';  // Ensure this path is correct
 
 // express app
 const app = express()
@@ -19,7 +20,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/movies',movieRoutes)
-
+app.use('/api/auth', authRoutes) // Ensure you have authRoutes imported
 // connect to db
 mongoose.connect(mongo_uri)
     .then(()=>{

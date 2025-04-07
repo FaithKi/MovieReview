@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MovieList from "../components/MovieList";
 import LoadingScreen from "../components/LoadingScreen";
+import axios from "axios";
 
 export default function Homepage() {
   const [movies, setMovies] = useState([]);
@@ -8,12 +9,14 @@ export default function Homepage() {
   useEffect(() => {
     const fetchMovies = async () => {
     try{
-        const response = await fetch("/api/movies");
-        const mov = await response.json();
+        const response = await axios.get("/api/movies");
+        const mov = await response.data;
         setMovies(mov);
-        setLoading(false)
-      } catch(error){
-        console.log(error)
+        setLoading(false);
+      } catch(error: unknown){
+        if (axios.isAxiosError(error)){
+          console.error(error.response?.data || error.message);
+        }
       };
     }
     fetchMovies();
