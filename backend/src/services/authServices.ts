@@ -1,6 +1,6 @@
 import { hashPassword, comparePassword } from "../utils/hash.ts";
 import jwt from "jsonwebtoken";
-import User from "../models/userModel.ts";
+import User from "../models/UserModel.ts";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_secret";
 

@@ -3,8 +3,7 @@ export interface User {
     name: string;
     email: string;
     role: "admin" | "user";
-    profileImage?: string;
-    createdAt: Date;
+    pictureProfile: string;
 }
   
 export interface UserState {
@@ -38,6 +37,22 @@ export interface MovieDetail {
     overview: string;
     popularity: number;
     revenue: number;
+}
+
+export interface Review {
+    _id: any;
+    userId: string;
+    movieId: string;
+    review: string;
+    star?: number;
+    likedBy: string[];
+}
+
+export interface ReviewComment {
+    _id: any;
+    reviewId: string;
+    userId: string;
+    comment: string;
 }
 
 export interface LoginFormInputs {

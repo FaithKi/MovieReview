@@ -1,4 +1,4 @@
-import User from '../models/userModel.ts';
+import User from '../models/UserModel.ts';
 import { Request, Response } from "express";
 import { registerUser, loginUser } from '../services/authServices.ts';
 

@@ -1,4 +1,4 @@
-import Movie from './src/models/movieModel.ts'
+import Movie from './src/models/MovieModel.ts'
 import dotenv from 'dotenv';
 dotenv.config();
 

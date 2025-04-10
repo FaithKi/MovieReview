@@ -18,7 +18,7 @@ export default function MovieList({ header, movies }: MovieListProps) {
 
 
   return (
-    <div className={`w-[65vw] px-2 py-2`}>
+    <div className={`w-[90vw]  md:w-[80vw] lg:w-[65vw] `}>
       <div className="text-2xl text-secondary-600 mb2">{header}</div>
       <div className="relative group">
         {/* Left Scroll Button */}

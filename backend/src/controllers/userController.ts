@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { AuthenticatedRequest } from "../middleware/authMiddleware.ts";
-import User from "../models/userModel.ts";
+import User from "../models/UserModel.ts";
 
 export const getProfile = async (req: AuthenticatedRequest, res: Response) => {
   try {

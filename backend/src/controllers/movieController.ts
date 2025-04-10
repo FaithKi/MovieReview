@@ -1,4 +1,4 @@
-import Movie from '../models/movieModel.ts';
+import Movie from '../models/MovieModel.ts';
 import { Request, Response} from "express";
 
 const getMovies = async (req: Request, res: Response) => {
