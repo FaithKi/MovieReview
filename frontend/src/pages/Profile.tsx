@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useEffect } from "react";
 import LoadingScreen from "../components/LoadingScreen";
-import { User } from "../type";
+import { MovieProps, User } from "../type";
 
 import { useNavigate } from "react-router-dom";
 import MovieList from "../components/MovieList";
@@ -13,6 +13,10 @@ export default function Profile() {
     const [user, setUser] = useState<User>();
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [favorites, setFavorites] = useState<MovieProps[]>([]);
+    const [recentLikes, setRecentLikes] = useState<MovieProps[]>([]);
+    const [recentReviews, setRecentReviews] = useState<MovieProps[]>([]);
+    const [watchlist, setWatchlist] = useState<MovieProps[]>([]);
     const navigate = useNavigate();
     useEffect(() => {
         const fetchUser = async () => {
@@ -45,7 +49,7 @@ export default function Profile() {
         isLoading ? <LoadingScreen /> :
         <div className="flex flex-col gap-10 items-center  ">
             {user && 
-                <div className="flex flex-col items-center gap-5 py-10">
+                <div className="flex flex-col items-center gap-5 bg-primary-400 w-[100vw] py-10">
                     <h2 className="text-xl font-semibold text-white">{user.name}</h2>
                     <img src="https://people.com/thmb/4w9l4F40TrN3Ix2d-PH2XODqra0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/sylvester-stallone-rocky-III-diet-062123-1-9a3af3b939fb417fb2032dfc03fa83cf.jpg" 
                     alt="Profile" className="w-32 h-32 rounded-full" />
@@ -54,19 +58,19 @@ export default function Profile() {
             }
             <MovieList
                 header="Favorites"
-                movies={[]}
+                movies={favorites}
             />
             <MovieList
                 header="Recent Likes"
-                movies={[]}
+                movies={recentLikes}
             />
             <MovieList
                 header="Recent Reviews"
-                movies={[]}
+                movies={recentReviews}
             />
             <MovieList
                 header="Watchlist"
-                movies={[]}
+                movies={watchlist}
             />
         </div>
     }</>

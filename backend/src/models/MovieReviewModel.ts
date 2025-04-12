@@ -5,7 +5,7 @@ export interface IMovieReview extends Document {
   movieId: Types.ObjectId;
   review: string | null;
   star?: number;
-  likedBy: Types.ObjectId[];
+  liked : boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -15,8 +15,8 @@ const MovieReviewSchema = new Schema<IMovieReview>(
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     movieId: { type: Schema.Types.ObjectId, ref: 'Movie', required: true },
     review: { type: String, default: null },
-    star: { type: Number, min: 1, max: 5 },
-    likedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    star: { type: Number, min: 1, max: 5 , default: null},
+    liked: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

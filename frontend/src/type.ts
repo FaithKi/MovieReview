@@ -35,17 +35,23 @@ export interface MovieDetail {
     runtime: number;
     tagline: string;
     overview: string;
-    popularity: number;
+    vote_average: number;
+    vote_count: number;
+    release_date: string;
+    genres: {
+        id: number;
+        name: string;
+    }[];
     revenue: number;
 }
 
 export interface Review {
-    _id: any;
-    userId: string;
-    movieId: string;
+    userId: any;
+    movieId: any;
+    watched: boolean;
     review: string;
-    star?: number;
-    likedBy: string[];
+    star: number;
+    liked: boolean;
 }
 
 export interface ReviewComment {

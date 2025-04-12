@@ -3,7 +3,7 @@ import { Request, Response} from "express";
 
 const getMovies = async (req: Request, res: Response) => {
     try{
-        const movies = await Movie.find().select("_id title tagline popularity runtime poster_path");
+        const movies = await Movie.find().select("_id title tagline genres release_date vote_average vote_count runtime poster_path");
         res.status(200).json(movies)
     } catch(error) {
         res.status(500).json({message: error})

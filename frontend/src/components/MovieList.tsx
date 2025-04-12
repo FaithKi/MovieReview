@@ -2,24 +2,26 @@ import { Link } from "react-router-dom";
 import {MovieProps} from "../props/MovieProps";
 import { useRef} from "react";
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { pageWidth } from "../constant";
+
 interface MovieListProps {
   header: String
   movies: Array<MovieProps>;
 }
 
+const scrollRange = 100 ;
 export default function MovieList({ header, movies }: MovieListProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const scroll = (direction: number) => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: direction * pageWidth * 4, behavior: "smooth" });
+      containerRef.current.scrollBy({ left: direction * scrollRange * 4, behavior: "smooth" });
     }
   };
 
 
   return (
     <div className={`w-[90vw]  md:w-[80vw] lg:w-[65vw] `}>
-      <div className="text-2xl text-secondary-600 mb2">{header}</div>
+      <div className="text-xl text-secondary-600">{header}</div>
+      <hr className="border-secondary-400 mb-2"/>
       <div className="relative group">
         {/* Left Scroll Button */}
         <ChevronLeft onClick={() => scroll(-1)}
@@ -40,7 +42,7 @@ export default function MovieList({ header, movies }: MovieListProps) {
                 </Link>
 
               </div>
-              <button className="justify-space-between text-2xl text-secondary-400">Watchlist</button>
+              {/* <button className="justify-space-between text-2xl text-secondary-400">Watchlist</button> */}
             </div>
           ))}
         </div> 
