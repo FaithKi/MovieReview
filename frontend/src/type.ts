@@ -54,6 +54,12 @@ export interface Review {
     liked: boolean;
 }
 
+export interface StarRatingProps {
+  value: number; 
+  onChange: (value: number | null) => void; 
+  size: number; 
+}
+
 export interface ReviewComment {
     _id: any;
     reviewId: string;

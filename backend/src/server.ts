@@ -6,6 +6,7 @@ import movieRoutes from './routes/movieRoutes.ts';  // Ensure this path is corre
 import authRoutes from './routes/authRoutes.ts';  // Ensure this path is correct
 import userRoutes from './routes/userRoutes.ts';  // Ensure this path is correct
 import reviewRoutes from './routes/reviewRoutes.ts';  // Ensure this path is correct
+import watchlistRoutes from './routes/watchlistRoutes.ts';  // Ensure this path is correct
 import { appendFile } from 'fs';
 
 // express app
@@ -26,6 +27,7 @@ app.use('/api/movies',movieRoutes)
 app.use('/api/auth', authRoutes) 
 app.use('/api/user', userRoutes)
 app.use('/api/review', reviewRoutes) // Ensure this path is correct
+app.use('/api/watchlist', watchlistRoutes) // Ensure this path is correct
 // connect to db
 mongoose.connect(mongo_uri)
     .then(()=>{

@@ -7,6 +7,7 @@ import { MovieProps, User } from "../type";
 
 import { useNavigate } from "react-router-dom";
 import MovieList from "../components/MovieList";
+import { fetchProfileMovies } from "../utils/movieUtils";
 
 export default function Profile() {
     const {userState, logout} = useAuth();
@@ -18,33 +19,49 @@ export default function Profile() {
     const [recentReviews, setRecentReviews] = useState<MovieProps[]>([]);
     const [watchlist, setWatchlist] = useState<MovieProps[]>([]);
     const navigate = useNavigate();
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await axios.get("/api/user/profile", {
-                    headers: {
-                        Authorization: `Bearer ${userState.token}`
-                    }
-                });
-                setUser(response.data);
-                console.log(response.data);
-                setLoading(false);
-            } catch(error: unknown){
-                if (axios.isAxiosError(error)){
-                    const customMessage = error.response?.data?.message;
-                    console.error(customMessage || error.message);
-                    setError(customMessage || error.message || "Fetch user failed");
+
+    const fetchUser = async () => {
+        try {
+            const response = await axios.get("/api/user/profile", {
+                headers: {
+                    Authorization: `Bearer ${userState.token}`
                 }
+            });
+            setUser(response.data);
+            console.log(response.data);
+            setLoading(false);
+        } catch(error: unknown){
+            if (axios.isAxiosError(error)){
+                const customMessage = error.response?.data?.message;
+                console.error(customMessage || error.message);
+                setError(customMessage || error.message || "Fetch user failed");
             }
-            console.dir(userState);
         }
+        // console.dir(userState);
+    }
+    const fetchRecentLikes = async () => {
+        await fetchProfileMovies(`/api/review/likes/${userState.user?.id}`, setRecentLikes);
+    }
+
+    const fetchWatchlist = async () => {
+        await fetchProfileMovies(`/api/watchlist/${userState.user?.id}`, setWatchlist);
+    }
+
+    useEffect(() => {
         fetchUser();    
+    }, [userState.token]);
+
+
+    useEffect(() => {
+        fetchWatchlist();
+        fetchRecentLikes();
     }, [userState.token]);
 
     const onLogout = () => {
         logout();
         navigate("/login");
     }
+
     return <>{
         isLoading ? <LoadingScreen /> :
         <div className="flex flex-col gap-10 items-center  ">

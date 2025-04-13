@@ -1,12 +1,43 @@
 import { Watchlist } from "../models/WatchlistModel.ts";
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import { AuthenticatedRequest } from "../middleware/authMiddleware.ts";
 
 export const getUserWatchlist = async (req: Request, res: Response) => {
     const { userId } = req.params;
     try {
-        const watchlists = await Watchlist.find({ userId });
-        res.status(200).json(watchlists);
+        const watchlist = await Watchlist.find({ userId })
+            .sort({ addedAt: -1 }) // newest first
+            .populate({
+            path: 'movieId',
+            select: 'title tagline genres release_date vote_average vote_count runtime poster_path',
+            }).limit(6);;
+      
+        res.status(200).json(watchlist);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+}
+
+export const getMovieInWatchlist = async (req: Request, res: Response) => { 
+    try {
+        const { userId , movieId} = req.params;
+
+
+        if (!movieId) {
+            res.status(400).json({ error: 'movieId is required.' });
+            return
+        }
+
+        const inWatchlist = await Watchlist.findOne({ userId, movieId });
+        const response = {
+            inWatchlist: true,
+        };
+        if (!inWatchlist) {
+            // Not watched
+            response.inWatchlist = false;
+        }
+
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ message: error });
     }
