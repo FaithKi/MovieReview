@@ -8,7 +8,7 @@ import { updateFieldCount, updateRating } from "../utils/updateDB.ts";
 export const getUserReviews = async (req: Request, res: Response) => {
     const { userId } = req.params;
     try {
-        const reviews = await MovieReview.find({ userId });
+        const reviews = await MovieReview.find({ userId }).sort({ updatedAt: -1 });
         res.status(200).json(reviews);
         // console.log(reviews);
     } catch (error) {
@@ -193,4 +193,4 @@ export const getRecentLikes = async (req: Request, res: Response) => {
       res.status(500).json({ message: error.message || 'Server error' });
     }
   };
-  
+
