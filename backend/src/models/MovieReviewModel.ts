@@ -15,7 +15,7 @@ const MovieReviewSchema = new Schema<IMovieReview>(
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     movieId: { type: Schema.Types.ObjectId, ref: 'Movie', required: true },
     review: { type: String, default: null },
-    star: { type: Number, min: 1, max: 5 , default: null},
+    star: { type: Number, min: 1, max: 10 , default: null},
     liked: { type: Boolean, default: false },
   },
   { timestamps: true }

@@ -1,6 +1,9 @@
 import { Watchlist } from "../models/WatchlistModel.ts";
 import { Request, response, Response } from "express";
 import { AuthenticatedRequest } from "../middleware/authMiddleware.ts";
+import User from "../models/UserModel.ts";
+import Movie from "../models/MovieModel.ts";
+import { updateFieldCount } from "../utils/updateDB.ts";
 
 export const getUserWatchlist = async (req: Request, res: Response) => {
     const { userId } = req.params;
@@ -59,7 +62,8 @@ export const addToWatchlist = async (req: AuthenticatedRequest, res: Response) =
             res.status(400).json({ error: 'Watchlist already exists for this movie.' });
             return
         }
-    
+        
+        await updateFieldCount(1, "watchlistCount",  movieId, userId)
         // Create new review (only include fields if they’re defined)
         const newWatchlist = new Watchlist({
           userId,
@@ -91,6 +95,9 @@ export const removeFromWatchlist= async (req: AuthenticatedRequest, res: Respons
             res.status(404).json({ error: 'Watchlist not found.' });
             return
         }
+
+        await updateFieldCount(-1, "watchlistCount",  movieId, userId)
+
         res.status(200).json({ message: 'Watchlist deleted successfully.' });
 
     } catch (err) {

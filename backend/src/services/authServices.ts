@@ -35,6 +35,6 @@ export const loginUser = async (email: string, password: string) => {
   if (!isMatch) throw new Error("Invalid credentials");
 
   const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: "1d" });
-
-  return { user: { id: user.id, name: user.name, email: user.email, role: user.role }, token };
+  user.password = ""; // Remove password from user object
+  return { user: user, token };
 };

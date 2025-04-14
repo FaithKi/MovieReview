@@ -1,6 +1,9 @@
 import { MovieReview } from "../models/MovieReviewModel.ts";
 import { Request, Response } from "express";
 import { AuthenticatedRequest } from "../middleware/authMiddleware.ts";
+import User from "../models/UserModel.ts";
+import Movie from "../models/MovieModel.ts";
+import { updateFieldCount, updateRating } from "../utils/updateDB.ts";
 
 export const getUserReviews = async (req: Request, res: Response) => {
     const { userId } = req.params;
@@ -63,6 +66,20 @@ export const createReview = async (req: AuthenticatedRequest, res: Response) => 
         }
     
         // Create new review (only include fields if they’re defined)
+        await updateFieldCount(1, "watchedCount",  movieId, userId)
+
+        if (review) {
+             await updateFieldCount(1, "reviewCount",  movieId, userId)
+        }
+        if (liked){    
+            await updateFieldCount(1, "likeCount",  movieId, userId)
+        }
+
+        if (star){
+            await updateRating(star, null, movieId, userId)
+        }
+
+
         const newReview = new MovieReview({
           userId,
           movieId,
@@ -97,9 +114,20 @@ export const updateReview = async (req: AuthenticatedRequest, res: Response) => 
             return
         }
 
-        if (review !== undefined) existing.review = review;
-        if (star !== undefined) existing.star = star;
-        if (liked !== undefined) existing.liked = liked;
+        if (review !== undefined) {
+            existing.review = review;
+            if (review) await updateFieldCount(1, "reviewCount",  movieId, userId)
+            else await updateFieldCount(-1, "reviewCount",  movieId, userId)
+        }
+        if (star !== undefined) {
+            await updateRating(star, existing.star ?? null, movieId, userId)
+            existing.star = star;
+        }
+        if (liked !== undefined) {
+            existing.liked = liked;
+            if (liked) await updateFieldCount(1, "likeCount",  movieId, userId)
+            else await updateFieldCount(-1, "likeCount",  movieId, userId)
+        }
 
         await existing.save();
         res.status(200).json(existing);
@@ -126,7 +154,18 @@ export const deleteReview = async (req: AuthenticatedRequest, res: Response) => 
             res.status(404).json({ error: 'Review not found.' });
             return
         }
-        // console.log(deleted);
+
+        await updateFieldCount(-1, "watchedCount",  movieId, userId)
+
+        if (deleted.review) {
+             await updateFieldCount(-1, "reviewCount",  movieId, userId)
+        }
+        if (deleted.liked){    
+            await updateFieldCount(-1, "likeCount",  movieId, userId)
+        }
+        if (deleted.star){
+            await updateRating(null, deleted.star ?? null, movieId, userId)
+        }
         res.status(200).json({ message: 'Review deleted successfully.' });
 
     } catch (err) {

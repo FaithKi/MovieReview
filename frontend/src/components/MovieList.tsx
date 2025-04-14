@@ -19,9 +19,9 @@ export default function MovieList({ header, movies }: MovieListProps) {
 
 
   return (
-    <div className={`w-[90vw]  md:w-[80vw] lg:w-[65vw] `}>
-      <div className="text-xl text-secondary-600">{header}</div>
-      <hr className="border-secondary-400 mb-2"/>
+    <div className={`w-[90vw]  md:w-[80vw] lg:w-[60vw] `}>
+      <div className="text-xl text-primary-600">{header}</div>
+      <hr className="border-primary-600 mb-2"/>
       <div className="relative group">
         {/* Left Scroll Button */}
         <ChevronLeft onClick={() => scroll(-1)}

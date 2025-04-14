@@ -1,32 +1,32 @@
-import mongoose from 'mongoose';
+import mongoose, {Schema} from 'mongoose';
 
-const GenreSchema = new mongoose.Schema({
+const GenreSchema = new Schema({
     id: Number,
     name: String
   });
   
-const ProductionCompanySchema = new mongoose.Schema({
+const ProductionCompanySchema = new Schema({
     id: Number,
     logo_path: String,
     name: String,
     origin_country: String
 });
 
-const ProductionCountrySchema = new mongoose.Schema({
+const ProductionCountrySchema = new Schema({
     iso_3166_1: String,
     name: String
 });
 
-const SpokenLanguageSchema = new mongoose.Schema({
+const SpokenLanguageSchema = new Schema({
     english_name: String,
     iso_639_1: String,
     name: String
 });
 
-const MovieSchema = new mongoose.Schema({
+const MovieSchema = new Schema({
     adult: Boolean,
     backdrop_path: String,
-    belongs_to_collection: mongoose.Schema.Types.Mixed, // Can be null or an object
+    belongs_to_collection: Schema.Types.Mixed, // Can be null or an object
     budget: Number,
     genres: [GenreSchema],
     homepage: String,
@@ -48,8 +48,20 @@ const MovieSchema = new mongoose.Schema({
     tagline: String,
     title: String,
     video: Boolean,
-    vote_average: Number,
-    vote_count: Number
+    vote_sum: { type: Number, default: 0 },
+    vote_count: { type: Number, default: 0 },
+    watchedCount: { type: Number, default: 0 },
+    watchlistCount: { type: Number, default: 0 },
+    likeCount: { type: Number, default: 0 },
+    reviewCount: { type: Number, default: 0 },
+    starStats: {
+          type: Schema.Types.Map,
+          of: Schema.Types.Number,
+          default: new Map([
+            ['1', 0], ['2', 0], ['3', 0], ['4', 0], ['5', 0],
+            ['6', 0], ['7', 0], ['8', 0], ['9', 0], ['10', 0],
+          ]),
+        },
   },
   { timestamps: true }
 );

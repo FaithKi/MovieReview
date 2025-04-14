@@ -19,12 +19,12 @@
 }
 
 @theme {
-  --color-primary-600: #2A004E;
-  --color-primary-500: #500073;
-  --color-primary-400: #340061;
+  --color-primary-600: #CF0F47;
+  --color-primary-500: #FF0B55;
+  --color-primary-400: #FFDEDE;
   --color-primary-300: #7300A6;
-  --color-secondary-600: #C62300;
-  --color-secondary-400: #F14A00;
+  --color-secondary-600: #000000;
+  --color-secondary-400: #FFFFFF;
   --color-snow: #FFF7F7;
 }
 
@@ -44,7 +44,7 @@
 } */
 
 body {
-  @apply h-screen bg-primary-600 max-w-full
+  @apply h-screen bg-primary-400 max-w-full
 }
 
 

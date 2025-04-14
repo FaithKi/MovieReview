@@ -26,7 +26,7 @@ export default function Homepage() {
   return (
     <>{
       ( isLoading ? <LoadingScreen /> :
-      <div className="flex flex-col gap-20 items-center  mt-20">
+      <div className="flex flex-col gap-20 items-center my-20">
       <MovieList header='NEW ON FILMAGEDDON' movies={movies} />
       <MovieList header='POPULAR ON FILMAGEDDON' movies={movies} />
     </div>

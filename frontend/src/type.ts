@@ -1,15 +1,27 @@
 export interface User {
-    id: string;
+    _id: string;
     name: string;
     email: string;
     role: "admin" | "user";
     pictureProfile: string;
+    starStats: Map<string, number>;
+    followers: number;
+    following: number;
+    watchedCount: number;
+    watchlistCount: number;
+    likeCount: number;
+    reviewCount: number;
 }
   
 export interface UserState {
     isAuthenticated: boolean;
     user: User | null;
     token: string | null;
+}
+
+export interface DecodedToken {
+    exp: number;
+    [key: string]: any;
 }
 
 export interface AuthContextType {
@@ -35,8 +47,13 @@ export interface MovieDetail {
     runtime: number;
     tagline: string;
     overview: string;
-    vote_average: number;
+    vote_sum: number;
     vote_count: number;
+    reviewCount: number
+    watchedCount: number
+    watchlistCount: number
+    likeCount: number
+    starStats: Map<string, number>;
     release_date: string;
     genres: {
         id: number;
