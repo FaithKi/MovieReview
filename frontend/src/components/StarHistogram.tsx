@@ -22,7 +22,7 @@ export default function StarHistogram({ starStats }: { starStats: Map<string, nu
         margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
           
           <XAxis dataKey="star" 
-          label={{ value: "Star Rating", position: "insideBottom", offset: -5, fill: 'var(--color-primary-600)' }} 
+          label={{ value: "Ratings", position: "insideBottom", offset: -5, fill: 'var(--color-primary-600)' }} 
           tick={{ fill: 'var(--color-primary-600)', fontSize: 12 }}/>
           <YAxis
             hide={true}

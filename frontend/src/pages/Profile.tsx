@@ -26,7 +26,7 @@ export default function Profile() {
                 navigate("/login");
                 return;
             }
-            const response = await axios.get(`/api/user/profile`, {
+            const response = await axios.get(`http://localhost:4000/api/user/profile`, {
                 headers: {
                     Authorization: `Bearer ${userState.token}`,
                 },

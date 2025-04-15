@@ -84,7 +84,10 @@ export default function MovieDetailPage() {
 
   const onReviewTextChange = async () => {
       if (!reviewInput.trim() || reviewInput.length > 300) return;
-      if(!review.star) alert("Please rate the movie before submitting a review.");
+      if(!review.star) {
+        alert("Please rate the movie before submitting a review.");
+        return;
+      }
       try {
         if (review.watched) {
           // const response = 
@@ -104,6 +107,7 @@ export default function MovieDetailPage() {
         setIsSubmitting(false);
       }
   }
+  
   return (
     <>
       {isLoading ? (
