@@ -57,15 +57,16 @@ export default function MovieDetailPage() {
   };
   useEffect(() => {
     fetchMovie();
-  }, []);
+  }, [review.star]);
 
   useEffect(() => {
     fetchReview();
-  }, []);
+  }, [review]);
 
   useEffect(() => {
     fetchWatchlist();
   }, []);
+
 
   const onWatched = async () => {
       await handleWatched(id, userState.token, review, setReview);
@@ -113,7 +114,7 @@ export default function MovieDetailPage() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <div className="bg-secondary-600/50 w-full  h-screen relative md:w-[60vw] md:left-[20%] shadow-xl">
+        <div className="bg-secondary-600/50 w-full pb-30 h-full relative md:w-[60vw] md:left-[20%] shadow-xl">
             
             <div className=" text-white flex bg-secondary-600/50 py-10 px-5  w-full items-center md:items-stretch flex-col md:flex-row">
               <div

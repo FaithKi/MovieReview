@@ -44,7 +44,7 @@
 } */
 
 body {
-  @apply h-screen bg-primary-400 max-w-full
+  @apply h-[100vh] bg-primary-400 max-w-full
 }
 
 
